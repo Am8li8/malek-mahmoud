@@ -382,3 +382,20 @@ transform: translateY(-10px);
   cursor: pointer;
   opacity: 0.7;
 }
+
+.about-all,
+.khebra-all,
+.content,
+.container {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.about-all.show,
+.khebra-all.show,
+.content.show,
+.container.show {
+  opacity: 1;
+  transform: translateY(0);
+}

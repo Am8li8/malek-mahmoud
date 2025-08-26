@@ -113,4 +113,20 @@ const goUpBtn = document.querySelector('.goup');
     });
   }
 
-  
+  // كل السيكشنات بالـ ID
+const sections = document.querySelectorAll('.about-all, .khebra-all, .content, .container');
+const bars = document.querySelectorAll('.skill-bar');
+
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add('show');
+    }
+  });
+
+  bars.forEach(bar => {
+    if (bar.getBoundingClientRect().top < window.innerHeight - 50) {
+      bar.classList.add('show');
+    }
+  });
+});
