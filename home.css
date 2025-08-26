@@ -38,6 +38,7 @@ header {
 
 nav {
   padding: 1.3em 0em;
+  text-align: center;
 }
 
 nav a {
@@ -283,10 +284,22 @@ transform: translateY(-10px);
   font-size: 1.2em;
   font-weight: 500;
   color: #b0bec5;
-  display: flex;
-  justify-content: left;
   padding-left: 0.5em;
   padding-top: 0.5em;
+}
+
+.down-load {
+  text-decoration: none;
+  color: #b0bec5;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  font-size: 1.3em;
+}
+
+.project-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* ===== Contact Section ===== */
@@ -349,7 +362,7 @@ transform: translateY(-10px);
   right: 40px;
   border-radius: 5px;
   font-size: 22px;
-  color: #000000;
+  color: #ffffff;
   text-align: center;
   line-height: 50px;
   transition: transform 0.5s ease, opacity 0.5s ease;
