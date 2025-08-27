@@ -113,4 +113,14 @@ const goUpBtn = document.querySelector('.goup');
     });
   }
 
-  
+// التحقق من تسجيل الدخول
+const isLoggedIn = !!localStorage.getItem("token");
+
+document.querySelectorAll('.down-load').forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    if (!isLoggedIn) {
+      e.preventDefault();
+      alert("⚠️ Please login to download!");
+    }
+  });
+});
