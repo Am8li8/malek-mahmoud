@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/pro.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <header>
+  <nav>
+    <ul class="sidebar">
+      <li onclick="hideSidebar()"><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a class="con" href="contact.html">Contact</a></li>
+    </ul>
+
+    <ul>
+      <li class="m"><a href="index.html">Malek</a></li>
+      <li class="menu-button" onclick="showSidebar()"><a href="#"><i class="fa-solid fa-bars"></i></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="header-title">My Projects</h1>
+                <p class="header-subtitle">A collection of my latest work in design and development</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <div class="filter-wrapper">
+                    <svg class="filter-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                    <button class="filter-btn" data-filter="development">Development</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2 class="cta-title">Ready to start a project?</h2>
+                <p class="cta-subtitle">I'm always excited to work on new projects and collaborate with great people.</p>
+                <a href="contact.html" class="cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </main>
+
+<script src="main.js"></script>
+</body>
+</html>
