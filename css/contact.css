@@ -25,7 +25,7 @@ body {
 }
 
 header {
-  padding: 0.5em 5em 0.5em 5em;
+  padding: 0.5em 2em 0.5em 2em;
 }
 
 nav ul {
@@ -74,7 +74,7 @@ nav a {
   width: 250px;
   z-index: 999;
   backdrop-filter: blur(10px);
-  background-color: #6d6d6d;
+  background-color: #a170c954;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -134,3 +134,22 @@ text-decoration: underline;
   .icons a:nth-child(2) i { color:#0088cc; }
   .icons a:nth-child(3) i { color:#000; }
   .icons a:nth-child(4) i { color:#1769ff; }
+
+  @media (max-width: 560px) {
+    .email {
+      font-size: 2.2em;
+    }
+  }
+  @media (max-width: 302px) {
+    .email {
+      font-size: 1.5em;
+    }
+
+    .icons {
+      font-size: 0.7em;
+    }
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }

@@ -25,7 +25,7 @@ body {
 }
 
 header {
-  padding: 0.5em 5em 0.5em 5em;
+  padding: 0.5em 2em 0.5em 2em;
 }
 
 nav ul {
@@ -74,7 +74,7 @@ nav a {
   width: 250px;
   z-index: 999;
   backdrop-filter: blur(10px);
-  background-color: #6d6d6d;
+  background-color: #a170c954;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -140,4 +140,35 @@ section h1 {
 .cv:hover {
   background-color: #81d1ff;
   color: #202020;
+}
+
+@media (max-width: 403px) {
+  
+  section h4 {
+    font-size: 0.5em;
+  }
+  
+  section h1 {
+    font-size: 1.2em;
+  }
+  
+  .btn {
+    font-size: 1em;
+  }
+  
+}
+
+@media (max-width: 303px) {
+  
+  section h4 {
+    font-size: 0.4em;
+  }
+  
+  section h1 {
+    font-size: 1em;
+  }
+  
+  .btn {
+    font-size: 0.8em;
+  }
 }
