@@ -320,3 +320,7 @@ const handleResize = debounce(() => {
 }, 250);
 
 window.addEventListener('resize', handleResize);
+
+  window.addEventListener("load", () => {
+    document.querySelector(".loader").style.display = "none";
+  });

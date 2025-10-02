@@ -44,3 +44,6 @@ function hideSidebar() {
       clickSound.play();
     });
 
+  window.addEventListener("load", () => {
+    document.querySelector(".loader").style.display = "none";
+  });
