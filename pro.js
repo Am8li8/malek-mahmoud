@@ -10,6 +10,7 @@ function hideSidebar() {
 
 const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
+const clickSound = document.getElementById("clickSound");
 
 // حركة الماوس
 window.addEventListener("mousemove", function(e){
@@ -36,6 +37,13 @@ document.querySelectorAll("a").forEach(link => {
     cursorOutline.classList.remove("active");
   });
 });
+
+// تشغيل الصوت عند الكليك
+window.addEventListener("click", () => {
+  clickSound.currentTime = 0; // علشان يعيد الصوت من الأول
+  clickSound.play();
+});
+
 
 const projects = [
   {
@@ -178,10 +186,14 @@ function renderProjects(projectsToRender = projects) {
   if (!projectsGrid) return;
   projectsGrid.innerHTML = '';
 
+  const fragment = document.createDocumentFragment();
+
   projectsToRender.forEach((project, index) => {
     const projectCard = createProjectCard(project, index);
-    projectsGrid.appendChild(projectCard);
+    fragment.appendChild(projectCard);
   });
+
+  projectsGrid.appendChild(fragment);
 }
 
 // Create a project card element
@@ -202,7 +214,7 @@ function createProjectCard(project, index) {
 
   card.innerHTML = `
     <div class="project-image-container">
-      <img src="${project.image}" alt="${project.title}" class="project-image">
+      <img data-src="${project.image}" alt="${project.title}" class="project-image lazy-image">
       <div class="project-overlay"></div>
       <div class="project-year">${project.year}</div>
     </div>
@@ -257,11 +269,34 @@ function observeProjectCards() {
   });
 }
 
-// Call observe function after rendering projects
+// Lazy loading images
+function lazyLoadImages() {
+  const lazyImages = document.querySelectorAll('.lazy-image');
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        observer.unobserve(img);
+      }
+    });
+  });
+
+  lazyImages.forEach(img => {
+    imageObserver.observe(img);
+  });
+}
+
+// Call observe + lazy load after rendering projects
 const originalRenderProjects = renderProjects;
 renderProjects = function (projectsToRender = projects) {
   originalRenderProjects(projectsToRender);
-  setTimeout(observeProjectCards, 100);
+  setTimeout(() => {
+    observeProjectCards();
+    lazyLoadImages();
+  }, 100);
 };
 
 // Debounce function for performance
