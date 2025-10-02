@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://malek-mahmoud.vercel.app/sitemap.xml
