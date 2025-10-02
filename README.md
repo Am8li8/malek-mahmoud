@@ -13,7 +13,10 @@ Built with clean HTML, CSS, and JavaScript.
 ## Technologies Used
 - HTML  
 - CSS  
-- JavaScript  
+- JavaScript
+- vercel.json
+- sitemap.xml
+- robots.txt 
 - Deployed on Vercel  
 - Clean URLs enabled for better UX  
 
