@@ -328,3 +328,133 @@ window.addEventListener("resize", handleResize);
 window.addEventListener("load", () => {
   document.querySelector(".loader").style.display = "none";
 });
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // نجيب كل عناصر h1 في الصفحة
+    const headings = document.querySelectorAll("h1");
+
+    // نعدل عليهم واحد واحد
+    headings.forEach(h1 => {
+      h1.style.fontFamily = "'Space Mono', monospace"; // font-family اللي عايزه
+      h1.style.fontWeight = "700"; // الوزن (bold مثلاً)
+    });
+  });
+
+
+  // ---- replace your createProjectCard(...) with this function ----
+function createProjectCard(project, index) {
+  const card = document.createElement("div");
+  card.className = "project-card";
+  card.style.animationDelay = `${index * 0.1}s`;
+  card.tabIndex = 0; // keyboard focusable
+
+  const tagsHTML = project.tags
+    .map((tag) => `<span class="project-tag">${tag}</span>`)
+    .join("");
+
+  const codeLink = project.codeLink
+    ? `<a href="${project.codeLink}" target="_blank" rel="noopener noreferrer" class="project-code-link">
+         <i class="fa-brands fa-github"></i>
+       </a>`
+    : "";
+
+  card.innerHTML = `
+    <div class="project-image-container">
+      <img data-src="${project.image}" alt="${project.title}" class="project-image lazy-image">
+      <div class="project-overlay"></div>
+      <div class="project-year">${project.year}</div>
+    </div>
+    <div class="project-content">
+      <h3 class="project-title">${project.title}</h3>
+      <p class="project-description">${project.description}</p>
+      <div class="project-tags">${tagsHTML}</div>
+      <div class="project-links">
+        <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          View Project
+        </a>
+        ${codeLink}
+      </div>
+    </div>
+  `;
+
+  // open modal when clicking the card BUT ignore clicks on <a> (links)
+  card.addEventListener("click", (e) => {
+    if (e.target.closest("a")) return; // لو ضغط على لينك متفتحش المودال
+    openModal(project);
+  });
+
+  // keyboard: open modal on Enter
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openModal(project);
+    }
+  });
+
+  return card;
+}
+
+// ---- modal functions (add these once in pro.js) ----
+function openModal(project) {
+  const modal = document.getElementById("projectModal");
+  if (!modal) return console.warn("projectModal element not found");
+
+  // set content
+  const img = document.getElementById("modalImage");
+  const title = document.getElementById("modalTitle");
+  const desc = document.getElementById("modalDescription");
+  const tagsEl = document.getElementById("modalTags");
+  const demo = document.getElementById("modalDemo");
+  const code = document.getElementById("modalCode");
+
+  img.src = project.image || "";
+  img.alt = project.title || "Project image";
+  title.textContent = project.title || "";
+  desc.textContent = project.description || "";
+  tagsEl.innerHTML = (project.tags || []).map(t => `<span>${t}</span>`).join("");
+
+  // demo link
+  demo.href = project.demoLink || "#";
+  if (!project.demoLink) demo.style.display = "none";
+  else demo.style.display = "";
+
+  // code link
+  if (project.codeLink) {
+    code.href = project.codeLink;
+    code.style.display = "";
+  } else {
+    code.style.display = "none";
+  }
+
+  // show modal
+  modal.setAttribute("aria-hidden", "false");
+  // prevent body scroll while modal open
+  document.documentElement.style.overflow = "hidden";
+}
+
+function closeModal() {
+  const modal = document.getElementById("projectModal");
+  if (!modal) return;
+  modal.setAttribute("aria-hidden", "true");
+  document.documentElement.style.overflow = ""; // restore scroll
+}
+
+// close button
+document.addEventListener("click", function (e) {
+  // close when pressing the close button
+  if (e.target.matches(".modal-close")) {
+    closeModal();
+  }
+
+  // close when click on overlay (outside modal-content)
+  if (e.target.id === "projectModal") {
+    closeModal();
+  }
+});
+
+// close on ESC
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closeModal();
+});
