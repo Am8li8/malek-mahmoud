@@ -80,7 +80,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #8d8d8d;
-  border-radius: 50px;
 }
 
 header {
@@ -115,8 +114,9 @@ nav a {
 }
 
 .m a {
-  font-weight: 600;
+  font-weight: 100;
   font-size: 1.8em;
+  font-family: "Space Mono", monospace;
 }
 
 .con {

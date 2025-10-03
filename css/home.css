@@ -109,8 +109,9 @@ nav a {
 }
 
 .m a {
-  font-weight: 600;
+  font-weight: 100;
   font-size: 1.8em;
+  font-family: "Space Mono", monospace;
 }
 
 .con {
@@ -173,7 +174,7 @@ section h1 {
 
 .work {
   text-decoration: none;
-  color: #fff;
+  color: #0e1420;
   background: linear-gradient(to right, #ff7af8, #3bc0ff);
   padding: 0.4em;
   border-radius: 4px;

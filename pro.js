@@ -1,11 +1,11 @@
 function showSidebar() {
-  const sidebar = document.querySelector('.sidebar');
-  if (sidebar) sidebar.classList.add('show');
+  const sidebar = document.querySelector(".sidebar");
+  if (sidebar) sidebar.classList.add("show");
 }
 
 function hideSidebar() {
-  const sidebar = document.querySelector('.sidebar');
-  if (sidebar) sidebar.classList.remove('show');
+  const sidebar = document.querySelector(".sidebar");
+  if (sidebar) sidebar.classList.remove("show");
 }
 
 const cursorDot = document.querySelector("[data-cursor-dot]");
@@ -13,21 +13,24 @@ const cursorOutline = document.querySelector("[data-cursor-outline]");
 const clickSound = document.getElementById("clickSound");
 
 // حركة الماوس
-window.addEventListener("mousemove", function(e){
+window.addEventListener("mousemove", function (e) {
   const posX = e.clientX;
   const posY = e.clientY;
 
   cursorDot.style.left = `${posX}px`;
   cursorDot.style.top = `${posY}px`;
 
-  cursorOutline.animate({
-    left: `${posX}px`,
-    top: `${posY}px`
-  }, { duration: 500, fill: "forwards" });
+  cursorOutline.animate(
+    {
+      left: `${posX}px`,
+      top: `${posY}px`,
+    },
+    { duration: 500, fill: "forwards" }
+  );
 });
 
 // تغيير الشكل عند المرور على اللينك
-document.querySelectorAll("a").forEach(link => {
+document.querySelectorAll("a").forEach((link) => {
   link.addEventListener("mouseenter", () => {
     cursorDot.classList.add("active");
     cursorOutline.classList.add("active");
@@ -44,85 +47,85 @@ window.addEventListener("click", () => {
   clickSound.play();
 });
 
-
 const projects = [
   {
     id: 1,
-    title: 'Khair Islamic Logo',
-    description: 'Creative logo design for app.',
-    category: 'design',
-    tags: ['Logo Design', 'Brand Identity', 'Illustrator'],
-    image: 'img/khair.png',
-    demoLink: 'https://www.behance.net/gallery/232153095/Khair-Islamic-Logo-Design',
+    title: "Khair Islamic Logo",
+    description: "Creative logo design for app.",
+    category: "design",
+    tags: ["Logo Design", "Brand Identity", "Illustrator"],
+    image: "img/khair.png",
+    demoLink:
+      "https://www.behance.net/gallery/232153095/Khair-Islamic-Logo-Design",
     codeLink: null,
-    year: '2025'
+    year: "2025",
   },
   {
     id: 2,
-    title: 'Abrag Logo Design',
-    description: 'Creative logo design for Abrag company.',
-    category: 'design',
-    tags: ['Logo Design', 'Brand Identity', 'Illustrator'],
-    image: 'img/abrag.png',
-    demoLink: 'https://www.behance.net/gallery/225553605/office-logo',
+    title: "Abrag Logo Design",
+    description: "Creative logo design for Abrag company.",
+    category: "design",
+    tags: ["Logo Design", "Brand Identity", "Illustrator"],
+    image: "img/abrag.png",
+    demoLink: "https://www.behance.net/gallery/225553605/office-logo",
     codeLink: null,
-    year: '2025'
+    year: "2025",
   },
   {
     id: 3,
-    title: 'More Road Logo Design',
-    description: 'Creative logo design for web devoloper.',
-    category: 'design',
-    tags: ['Logo Design', 'Brand Identity', 'Illustrator'],
-    image: 'img/more.png',
-    demoLink: 'https://www.behance.net/gallery/230815047/Moreroad-Logo-Design',
+    title: "More Road Logo Design",
+    description: "Creative logo design for web devoloper.",
+    category: "design",
+    tags: ["Logo Design", "Brand Identity", "Illustrator"],
+    image: "img/more.png",
+    demoLink: "https://www.behance.net/gallery/230815047/Moreroad-Logo-Design",
     codeLink: null,
-    year: '2025'
+    year: "2025",
   },
   {
     id: 4,
-    title: 'M25 Fonts Logo',
-    description: 'Creaive logo design for a font website.',
-    category: 'design',
-    tags: ['Logo Design', 'Brand Identity', 'Illustrator'],
-    image: 'img/m25.png',
-    demoLink: 'https://www.behance.net/gallery/231470719/M25-Fonts-Logo-design',
+    title: "M25 Fonts Logo",
+    description: "Creaive logo design for a font website.",
+    category: "design",
+    tags: ["Logo Design", "Brand Identity", "Illustrator"],
+    image: "img/m25.png",
+    demoLink: "https://www.behance.net/gallery/231470719/M25-Fonts-Logo-design",
     codeLink: null,
-    year: '2025'
+    year: "2025",
   },
   {
     id: 5,
-    title: 'M25 Fonts Website',
-    description: 'M25 fonts website.',
-    category: 'development',
-    tags: ['HTML', 'CSS', 'Responsive Design'],
-    image: 'img/webm.jpg',
-    demoLink: 'https://m25fonts.netlify.app',
-    codeLink: 'https://github.com/Am8li8/m25-beta',
-    year: '2025'
+    title: "M25 Fonts Website",
+    description: "M25 fonts website.",
+    category: "development",
+    tags: ["HTML", "CSS", "Responsive Design"],
+    image: "img/webm.jpg",
+    demoLink: "https://m25fonts.netlify.app",
+    codeLink: "https://github.com/Am8li8/m25-beta",
+    year: "2025",
   },
   {
     id: 6,
-    title: 'Malek Portfolio',
-    description: 'Malek Mahmoud Portfolio Website.',
-    category: 'development',
-    tags: ['HTML', 'CSS', 'Responsive Design'],
-    image: 'img/malek.png',
-    demoLink: 'https://malek-mahmoud.vercel.app/',
-    codeLink: 'https://github.com/Am8li8/malek-mahmoud',
-    year: '2025'
-  }
+    title: "Malek Portfolio",
+    description: "Malek Mahmoud Portfolio Website.",
+    category: "development",
+    tags: ["HTML", "CSS", "Responsive Design"],
+    image: "img/malek.png",
+    demoLink: "https://malek-mahmoud.vercel.app/",
+    codeLink: "https://github.com/Am8li8/malek-mahmoud",
+    year: "2025",
+  },
 ];
 
 // DOM Elements
-let currentFilter = 'all';
-const projectsGrid = document.getElementById('projectsGrid');
-const filterButtons = document.querySelectorAll('.filter-btn');
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
+let currentFilter = "all";
+const projectsGrid = document.getElementById("projectsGrid");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const navToggle = document.getElementById("navToggle");
+const navMenu = document.getElementById("navMenu");
 
 // Initialize the page
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   if (projectsGrid) renderProjects();
   setupEventListeners();
 });
@@ -130,21 +133,21 @@ document.addEventListener('DOMContentLoaded', function () {
 // Setup Event Listeners
 function setupEventListeners() {
   // Filter buttons
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      const filter = this.getAttribute('data-filter');
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const filter = this.getAttribute("data-filter");
       setActiveFilter(filter);
       filterProjects(filter);
     });
   });
 
   // Add smooth scroll behavior to anchor links
-  document.addEventListener('click', function (e) {
+  document.addEventListener("click", function (e) {
     const anchor = e.target.closest && e.target.closest('a[href^="#"]');
     if (anchor) {
       e.preventDefault();
-      const target = anchor.getAttribute('href');
-      if (!target || target === '#') return; // تجاهل href="#" أو فارغ
+      const target = anchor.getAttribute("href");
+      if (!target || target === "#") return; // تجاهل href="#" أو فارغ
       smoothScrollTo(target);
     }
   });
@@ -153,38 +156,39 @@ function setupEventListeners() {
 // Set active filter button
 function setActiveFilter(filter) {
   currentFilter = filter;
-  filterButtons.forEach(button => {
-    button.classList.remove('active');
-    if (button.getAttribute('data-filter') === filter) {
-      button.classList.add('active');
+  filterButtons.forEach((button) => {
+    button.classList.remove("active");
+    if (button.getAttribute("data-filter") === filter) {
+      button.classList.add("active");
     }
   });
 }
 
 // Filter projects based on category
 function filterProjects(filter) {
-  const filteredProjects = filter === 'all'
-    ? projects
-    : projects.filter(project => project.category === filter);
+  const filteredProjects =
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter);
 
   if (!projectsGrid) return;
 
   // Add fade out animation
-  projectsGrid.style.opacity = '0';
-  projectsGrid.style.transform = 'translateY(20px)';
+  projectsGrid.style.opacity = "0";
+  projectsGrid.style.transform = "translateY(20px)";
 
   setTimeout(() => {
     renderProjects(filteredProjects);
     // Add fade in animation
-    projectsGrid.style.opacity = '1';
-    projectsGrid.style.transform = 'translateY(0)';
+    projectsGrid.style.opacity = "1";
+    projectsGrid.style.transform = "translateY(0)";
   }, 150);
 }
 
 // Render projects to the grid
 function renderProjects(projectsToRender = projects) {
   if (!projectsGrid) return;
-  projectsGrid.innerHTML = '';
+  projectsGrid.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
 
@@ -198,19 +202,19 @@ function renderProjects(projectsToRender = projects) {
 
 // Create a project card element
 function createProjectCard(project, index) {
-  const card = document.createElement('div');
-  card.className = 'project-card';
+  const card = document.createElement("div");
+  card.className = "project-card";
   card.style.animationDelay = `${index * 0.1}s`;
 
-  const tagsHTML = project.tags.map(tag =>
-    `<span class="project-tag">${tag}</span>`
-  ).join('');
+  const tagsHTML = project.tags
+    .map((tag) => `<span class="project-tag">${tag}</span>`)
+    .join("");
 
   const codeLink = project.codeLink
     ? `<a href="${project.codeLink}" target="_blank" rel="noopener noreferrer" class="project-code-link">
          <i class="fa-brands fa-github"></i>
        </a>`
-    : '';
+    : "";
 
   card.innerHTML = `
     <div class="project-image-container">
@@ -240,8 +244,8 @@ function smoothScrollTo(target) {
   const element = document.querySelector(target);
   if (element) {
     element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      behavior: "smooth",
+      block: "start",
     });
   }
 }
@@ -249,42 +253,42 @@ function smoothScrollTo(target) {
 // Intersection Observer for scroll animations
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  rootMargin: "0px 0px -50px 0px",
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
     }
   });
 }, observerOptions);
 
 // Observe project cards for scroll animations
 function observeProjectCards() {
-  const cards = document.querySelectorAll('.project-card');
-  cards.forEach(card => {
+  const cards = document.querySelectorAll(".project-card");
+  cards.forEach((card) => {
     observer.observe(card);
   });
 }
 
 // Lazy loading images
 function lazyLoadImages() {
-  const lazyImages = document.querySelectorAll('.lazy-image');
+  const lazyImages = document.querySelectorAll(".lazy-image");
 
   const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const img = entry.target;
         img.src = img.dataset.src;
-        img.removeAttribute('data-src');
+        img.removeAttribute("data-src");
         observer.unobserve(img);
       }
     });
   });
 
-  lazyImages.forEach(img => {
+  lazyImages.forEach((img) => {
     imageObserver.observe(img);
   });
 }
@@ -315,12 +319,12 @@ function debounce(func, wait) {
 // Handle window resize for responsive behavior
 const handleResize = debounce(() => {
   if (window.innerWidth > 768 && navMenu) {
-    navMenu.classList.remove('active');
+    navMenu.classList.remove("active");
   }
 }, 250);
 
-window.addEventListener('resize', handleResize);
+window.addEventListener("resize", handleResize);
 
-  window.addEventListener("load", () => {
-    document.querySelector(".loader").style.display = "none";
-  });
+window.addEventListener("load", () => {
+  document.querySelector(".loader").style.display = "none";
+});
