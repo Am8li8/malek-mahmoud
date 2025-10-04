@@ -78,34 +78,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("chat-input");
   const send = document.getElementById("chat-send");
 
-  // === Open/Close Bot ===
-  btn.onclick = () => win.classList.toggle("show");
-  closeBtn.onclick = () => win.classList.remove("show");
+// === Open/Close Bot ===
+btn.onclick = () => win.classList.toggle("show");
+closeBtn.onclick = () => win.classList.remove("show");
 
-  // === Send Message ===
+
   send.onclick = sendMessage;
   input.addEventListener("keypress", e => {
     if (e.key === "Enter") sendMessage();
   });
 
-  async function sendMessage() {
+  function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
-
     append("user", text);
     input.value = "";
-
-    // === هنا بنستدعي الرد من API ===
-    append("bot", "Typing... ⏳");
-    const botResponse = await getBotResponse(text);
-    
-    // نشيل Typing...
-    const typingDiv = body.querySelector(".msg.bot:last-child");
-    if (typingDiv && typingDiv.textContent === "Typing... ⏳") {
-      typingDiv.remove();
-    }
-
-    append("bot", botResponse);
+    setTimeout(() => reply(text), 500);
   }
 
   function append(sender, text) {
@@ -116,23 +104,75 @@ document.addEventListener("DOMContentLoaded", () => {
     body.scrollTop = body.scrollHeight;
   }
 
-  // === Function to call API ===
-  async function getBotResponse(message) {
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
-      });
-      const data = await res.json();
-      return data.response || "Sorry, I didn’t get that. 😅";
-    } catch (err) {
-      console.error(err);
-      return "Oops! Something went wrong. 😅";
-    }
+  function reply(text) {
+    let r = "Sorry, I didn’t get that. 😅";
+    // مثال بسيط للردود
+    if (text.toLowerCase().includes("hi")) r = "Hi there! 👋";
+    append("bot", r);
   }
 });
 
 
+ document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("chatbot-btn");
+  const win = document.getElementById("chatbot-window");
+  const closeBtn = document.getElementById("chat-close");
+  const body = document.getElementById("chat-body");
+  const input = document.getElementById("chat-input");
+  const send = document.getElementById("chat-send");
 
- 
+  // === Open/Close Bot ===
+  btn.onclick = () => win.classList.toggle("show");
+  closeBtn.onclick = () => win.classList.remove("show");
+
+  send.onclick = sendMessage;
+  input.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    append("user", text);
+    input.value = "";
+    append("bot", "Typing...");
+
+    // هنا بقى الـ API Key مباشرة
+    const API_KEY = "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";
+
+    try {
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: text }]
+        })
+      });
+
+      const data = await res.json();
+      const botReply = data.choices?.[0]?.message?.content || "Sorry, I didn’t get that 😅";
+
+      // شيل آخر رسالة "Typing..." قبل ما تضيف الرد الحقيقي
+      const lastMsg = body.querySelector(".msg.bot:last-child");
+      if (lastMsg && lastMsg.textContent === "Typing...") lastMsg.remove();
+
+      append("bot", botReply);
+
+    } catch (err) {
+      console.error(err);
+      append("bot", "Error connecting to OpenAI 😅");
+    }
+  }
+
+  function append(sender, text) {
+    const div = document.createElement("div");
+    div.className = "msg " + sender;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+});
