@@ -78,22 +78,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("chat-input");
   const send = document.getElementById("chat-send");
 
-// === Open/Close Bot ===
-btn.onclick = () => win.classList.toggle("show");
-closeBtn.onclick = () => win.classList.remove("show");
+  // === Open/Close Bot ===
+  btn.onclick = () => win.classList.toggle("show");
+  closeBtn.onclick = () => win.classList.remove("show");
 
-
+  // === Send Message ===
   send.onclick = sendMessage;
   input.addEventListener("keypress", e => {
     if (e.key === "Enter") sendMessage();
   });
 
-  function sendMessage() {
+  async function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
+
     append("user", text);
     input.value = "";
-    setTimeout(() => reply(text), 500);
+
+    // === هنا بنستدعي الرد من API ===
+    append("bot", "Typing... ⏳");
+    const botResponse = await getBotResponse(text);
+    
+    // نشيل Typing...
+    const typingDiv = body.querySelector(".msg.bot:last-child");
+    if (typingDiv && typingDiv.textContent === "Typing... ⏳") {
+      typingDiv.remove();
+    }
+
+    append("bot", botResponse);
   }
 
   function append(sender, text) {
@@ -104,13 +116,23 @@ closeBtn.onclick = () => win.classList.remove("show");
     body.scrollTop = body.scrollHeight;
   }
 
-  function reply(text) {
-    let r = "Sorry, I didn’t get that. 😅";
-    // مثال بسيط للردود
-    if (text.toLowerCase().includes("hi")) r = "Hi there! 👋";
-    append("bot", r);
+  // === Function to call API ===
+  async function getBotResponse(message) {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+      const data = await res.json();
+      return data.response || "Sorry, I didn’t get that. 😅";
+    } catch (err) {
+      console.error(err);
+      return "Oops! Something went wrong. 😅";
+    }
   }
 });
+
 
 
  
