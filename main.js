@@ -138,7 +138,7 @@ closeBtn.onclick = () => win.classList.remove("show");
     append("bot", "Typing...");
 
     // هنا بقى الـ API Key مباشرة
-    const API_KEY = "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";
+    const API_KEY = "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";
 
     try {
       const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -176,3 +176,4 @@ closeBtn.onclick = () => win.classList.remove("show");
     body.scrollTop = body.scrollHeight;
   }
 });
+
